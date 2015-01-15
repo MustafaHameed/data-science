@@ -1,0 +1,75 @@
+----------------------------
+The Data Scientist's Toolbox
+Lecture Notes
+----------------------------
+
+
+CLI - Command Line Interface
+----------------------------
+
+/ root (top of tree)
+~ home (personal files)
+
+pwd (path to working directory)
+clear
+ls
+ls -a (lists hidden and unhidden)
+ls -al (lists details for hidden and unhidden)
+cd dir (change directory)
+cd (to home dir)
+cd .. (to one level above)
+mkdir name (make directory)
+touch name (create an empty file)
+cp file dir (copy a file to a dir)
+cp -r dir1 dir2 (copy files from dir1 to dir2)
+rm file (remove)
+rm -r dir
+mv file dir (move file from current wd to dir)
+mv name1 name2 (rename)
+echo (print)
+date (print date and time)
+
+Git
+---------------------------
+$git config --list (to see your user name, email ...)
+Git (local) - GitHub (server)
+
+1)create a repo on GitHub (server)
+2)create a local copy
+  - create a directory to store the repo (mkdir)
+  - navigate to this dir (cd)
+  - initialize a local Git repo in this dir (git init)
+  - point local at server (git remote add origin https://github.com/username/repo-name.git)
+**git clone https://github.com/username/repo-name.git (to clone a existing repo)
+3)Commit changes to local and server
+  - git add . (adds all new files)
+  - git add -u (updates tracking for files that changed names or were deleted)
+  - git add -A (does both above)
+  - git commit -m "message" (commit to local repo)
+  - git push (push to server - GitHub)
+
+Branches:
+  - git checkout -b branchname (create a branch)
+  - git branch (to see what branch you are type on)
+  - git checkout master (switch back to the master branch type)
+
+Pull request: merge in your changes into other branch (repo)
+  - feature of GitHub
+  - send request, others get notification
+
+Markdown
+----------------------------
+  ## secondary heading
+  ### tertiary heading
+  * first item
+  * second item
+
+R Packages:
+----------------------------
+  available.package() (obtain info about available pkgs on GRAN)
+    a <- available.packages()
+    head(rownames(a), 3) (show the names of the first few pkgs)
+  install.packages("name")
+  install.packages("p1", "p2", "p3")
+  library(pkg-name) (load pkgs into R - no quotes!)
+  search() (display functions that are exported by that pkg)
