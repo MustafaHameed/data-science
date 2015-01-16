@@ -1,5 +1,5 @@
 Swirl - R Programming
-
+--------------------------------
 skip(): skip the current question
 play(): experiment with R on your own; swirl will ignore what you do...
 nxt():  regain swirl's attention
@@ -9,7 +9,7 @@ info(): displays these options again
 help.start(): more information on a particular topic related to R
 
 lesson 1 - Basic Building Blocks
-
+---------------------------------
 <-: assign
 c():  (concatenate) create a vector
 ?c: learn more about function c
@@ -20,3 +20,23 @@ abs():  absolute value
 c(1, 2, 3, 4) * 2 + 100 = c(102, 104, 106, 108)
 c(1, 2, 3, 4) + c(1, 10) = c(2, 12, 4, 14)
 c(1, 2, 3, 4) + c(1, 10, 100) = c(2, 12, 103, 4) and a warning
+
+lesson 2 - Workspace and Files
+---------------------------------
+getwd():  get current working directory
+setwd("dir"): set working directory
+ls(): list all the objects in workspace
+list.files(): same as ls()
+dir():  list all the files in working directory
+args(function name):  determine the arguments of this function
+dir.create("dir"):  create a directory
+file.create("file"):  create a file
+file.exists("file"):  check if file exists in the working directory
+file.info("file"):  access information about the file
+file.info("file")$mode: to grab specific items.
+file.rename("filename1", "filename2"):  rename a file
+file.remove("file"): remove a file
+file.copy("filename1", "filename2"):  copy a file
+file.path("file"): show path to the file
+dir.create("dir1/dir2", recursive = TRUE):  create a directory dir1 and a secondary directory dir2
+unlink("dir", recursive = TRUE): remove a directory that contains other directories
