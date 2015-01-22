@@ -207,3 +207,102 @@ unique(): returns a vector with all duplicate elements removed
 anonymous functions:
 lapply(unique_vals, function(elem) elem[2]): return a list containing the second item from each element of the unique_vals list
 The function has no name and disappears as soon as lapply() is done using it.
+
+lesson 10 - vapply and tapply
+----------------------------------
+str(): compactly display the structure of an arbitrary R object
+summary(): object summaries
+vapply(): allows to specify the format of the result explicitly
+table(): to show how many values fall has the same value
+tapply(): to split data up into groups based on the value of some variable, then apply a function to the members of each group
+
+lesson 11 - Looking at Data
+----------------------------------
+class()
+dim()
+nrow()
+ncol()
+object.size(): show how much space the dataset is occupying in memory
+names(): return a character vector of column names
+head(): default is 6 rows, head(object, 10) -> 10 rows
+tail(): same as above, view last 6(default) rows
+summary(): how each variable is distributed and how much of the dataset is missing
+table()
+str(): structure
+
+lesson 12 - Simulation
+----------------------------------
+sample(): generate random numbers
+    > sample(1:6, 4, replace = TRUE)
+    [1] 1 4 3 6
+    > flips <- sample(c(0, 1), 100, replace = TRUE, prob = c(0.3, 0.7))
+LETTERS: a predefined variable in R containing a vector of all 26 letters of the English alphabet
+    > sample(LETTERS)
+     [1] "F" "S" "L" "D" "B" "V" "A" "U" "H" "M" "J" "E" "N" "X" "K" "T" "Q" "Y" "P"
+    [20] "W" "O" "I" "G" "R" "Z" "C"
+rbinom(): binomial random variable
+    > rbinom(1, size = 100, prob = 0.7)
+    [1] 70
+    > rbinom(100, size = 1, prob = 0.7)
+     [1] 0 1 0 1 1 1 1 0 0 0 1 1 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 1 0 1 0 1 1 1 1 0 0
+    [40] 0 1 1 0 1 1 1 1 0 1 1 1 1 0 0 1 1 1 1 1 1 1 1 0 0 0 1 0 0 1 1 1 1 1 0 1 1 1 0
+    [79] 1 1 1 1 1 1 1 1 1 1 1 1 0 1 1 1 1 1 1 1 0 0
+rnorm(): The standard normal distribution has mean 0 and standard deviation 1
+    > rnorm(10)
+     [1]  0.4156254  0.3358619 -0.7711440 -1.1073701 -0.9143807  1.4558764  0.2515096
+     [8]  0.5741982 -0.3514410  0.1756151
+    > rnorm(10, mean = 100, sd = 25)
+     [1] 109.55673 100.22195 101.21602 118.09161 113.83964  89.05337  65.54844
+     [8]  83.89043  92.56555  61.52769
+rpois(): Poisson distribution
+replicate(): creates a matrix, replicate(100, rpois(5, 10)) each column contains 5 random numbers
+            generated from a Poisson distribution with mean 10.
+colMeans(): find the mean of each column
+hist(): plots a histogram
+rexp(): exponential distribution
+rchisq(): chi-squared distribution
+rgamma(): gamma distribution
+
+Each probability distribution in R has
+    - r*** function (for "random")
+    - d*** function (for "density")
+    - p*** (for "probability")
+    - q*** (for "quantile").
+
+lesson 13 - Dates and Times
+----------------------------------
+Dates are represented by the 'Date' class
+    Stored as the number of days since 1970-01-01
+Times are represented by the 'POSIXct' and 'POSIXlt'
+    Stored as either the number of seconds since 1970-01-01(for 'POSIXct')
+    or a list of seconds, minutes, hours, etc. (for 'POSIXlt')
+
+Sys.Date(): get the current date
+unclass(): see what an object looks internally
+as.Date("1969-01-01"): create a Date object
+Sys.time(): [1] "2015-01-22 12:54:40 EST" (POSIXct)
+as.POSIXlt(Sys.time()): POSIXlt
+weekdays(): return the day of week from any date or time
+months(): same as above
+quarters(t2): same as above
+strptime(): converts character vectors to POSIXlt. Similar to as.POSIXlt(), except that the input
+            doesn't have to be in a particular format(YYYY-MM-DD)
+    > t3 <- "October 17, 1986 08:24"
+    > strptime(t3, "%B %d, %Y %H:%M")
+    [1] "1986-10-17 08:24:00 EDT"
+
+arithmetic operations (+ and -) and comparisons (<, ==, etc.) could be used
+difftime(): like '-', but it allows to specify a 'units' parameter
+    > difftime(Sys.time(), t1, units = 'days')
+    Time difference of 0.01647176 days
+
+lesson 14 - Base Graphics
+----------------------------------
+data(): load an included data frame
+plot(): plots a graph
+    > plot(x = cars$speed, y = cars$dist, xlab = "Speed", ylab = "Stopping Distance")
+    > plot(cars, col = 2) plots cars with red color
+    ?points - change the shape of the symbols in the plot
+boxplot():
+    > boxplot(formula = mpg ~ cyl, data = mtcars)
+hist(): When looking at a single variable, histograms are a useful tool
