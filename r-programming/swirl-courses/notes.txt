@@ -81,26 +81,28 @@ At least one is TRUE: A | B
 Both are TRUE: A & B
 
 paste():
-> my_char
-[1] "My"   "name" "is"
-> paste(my_char, collapse = " ")
-[1] "My name is"
-> c(my_char, "Qingxiao")
-[1] "My"       "name"     "is"       "Qingxiao"
-> paste("Hello", "world!", sep = " ")
-[1] "Hello world!"
-> paste(1:3, c("X", "Y", "Z"), sep = "")
-[1] "1X" "2Y" "3Z"
-> paste(1:3, c("X", "Y", "Z"), sep = "", collapse = " ")
-[1] "1X 2Y 3Z"
-> paste(LETTERS, 1:4, sep = "-")
- [1] "A-1" "B-2" "C-3" "D-4" "E-1" "F-2" "G-3" "H-4" "I-1" "J-2" "K-3" "L-4" "M-1" "N-2" "O-3" "P-4" "Q-1" "R-2" "S-3"
-[20] "T-4" "U-1" "V-2" "W-3" "X-4" "Y-1" "Z-2"
+    > my_char
+    [1] "My"   "name" "is"
+    > paste(my_char, collapse = " ")
+    [1] "My name is"
+    > c(my_char, "Qingxiao")
+    [1] "My"       "name"     "is"       "Qingxiao"
+    > paste("Hello", "world!", sep = " ")
+    [1] "Hello world!"
+    > paste(1:3, c("X", "Y", "Z"), sep = "")
+    [1] "1X" "2Y" "3Z"
+    > paste(1:3, c("X", "Y", "Z"), sep = "", collapse = " ")
+    [1] "1X 2Y 3Z"
+    > paste(LETTERS, 1:4, sep = "-")
+     [1] "A-1" "B-2" "C-3" "D-4" "E-1" "F-2" "G-3" "H-4" "I-1" "J-2" "K-3" "L-4" "M-1" "N-2" "O-3" "P-4" "Q-1" "R-2" "S-3"
+    [20] "T-4" "U-1" "V-2" "W-3" "X-4" "Y-1" "Z-2"
 
 lesson 5 - Missing Values
 ----------------------------------
 rnorm(): rnorm(1000) containing 1000 draws from a standard normal distribution
-sample(): sample(c(1:100), 10) selects 10 elements random from a vector
+sample():
+    sample(c(1:100), 10) selects 10 elements random from a vector
+    sample(10):  [1]  8 10  2  1  3  5  9  4  6  7 (random sampling of integers from 1 to 10 without replacement)
 is.na(): tells whether each element of a vector is NA.
 sum(is.na(vector)): sums up all the TRUES(which is 1) and ignores FALSEs(NAs, which is 0)
 NaN: not a number
@@ -128,11 +130,80 @@ foo bar
  11   2
 
 names(): get the names of a vector
-> names(vect)
-[1] "foo"  "bar"  "norf"
-> vect2 <- c(11, 2, NA)
-> names(vect2) <- c("foo", "bar", "norf")
+    > names(vect)
+    [1] "foo"  "bar"  "norf"
+    > vect2 <- c(11, 2, NA)
+    > names(vect2) <- c("foo", "bar", "norf")
+identical(): will return TRUE if the two R objects passed to it as arguments are identical
+    > identical(vect, vect2)
+    [1] TRUE
 
-identical(): checks that if vectors are the same
-> identical(vect, vect2)
-[1] TRUE
+lesson 7 - Matrices and Data Frames
+----------------------------------
+Matrices: can only contain a single class of data
+Data frames: can consist of many different classes of data
+
+dim(): tells the 'dimensions' of an object
+    > my_vector
+     [1]  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19 20
+    > dim(my_vector)
+    NULL
+    > dim(my_vector) <- c(4, 5)
+    > dim(my_vector)
+    [1] 4 5
+    > my_vector
+         [,1] [,2] [,3] [,4] [,5]
+    [1,]    1    5    9   13   17
+    [2,]    2    6   10   14   18
+    [3,]    3    7   11   15   19
+    [4,]    4    8   12   16   20
+attributes()
+    > attributes(my_vector)
+    $dim
+    [1] 4 5
+class(obj): returns the class type of the object
+matrix(data = NA, nrow = 1, ncol = 1, byrow = FALSE, dimnames = NULL): create a matrix
+cbind(): combine columns
+data.frame(): takes any number of arguments and returns a single object of class `data.frame` that is composed of the original objects
+colnames(): set the column names attributes for a data frame (similar to dim())
+
+lesson 8 - Logic
+----------------------------------
+`&`/`|` operator is used to evaluate AND/OR across a vector.
+`&&`/`||` version of AND/OR only evaluates the first member of a vector.
+    > TRUE & c(TRUE, FALSE, FALSE)
+    [1]  TRUE FALSE FALSE
+    > TRUE && c(TRUE, FALSE, FALSE)
+    [1] TRUE
+
+All AND operators are evaluated before OR operators.
+    > 5 > 8 || 6 != 8 && 4 > 3.9
+    [1] TRUE
+
+isTRUE(): takes one argument. If that argument evaluates to TRUE, the function will return TRUE. Otherwise, the function will return FALSE.
+xor(): If one argument evaluates to TRUE and one argument evaluates to FALSE, then this function will return TRUE, otherwise it will return FALSE.
+which(): takes a logical vector as an argument and returns the indices of the vector that are TRUE
+any(): take logical vectors as their argument and return TRUE if one or more of the elements in the logical vector is TRU
+all(): take logical vectors as their argument and return TRUE if every element in the logical vector is TRUE
+
+lesson 9 - lapply and sapply
+----------------------------------
+head(): preview the first six lines of the dataset
+as.list(data.frame): show data frame as a list of vectors
+lapply(): takes a list as input, applies a function to each element of the list, then returns a list of the same length as the original one
+    'l' stands for "list", so it returns a list
+as.character(): can change list to vector
+sapply(): automates this process by calling lapply() behind the scenes
+    - if the result is a list where every element is of length one, then sapply() returns a vector
+    - if the result is a list where every element is a vector of the same length (> 1), sapply() returns a matrix
+    - If sapply() can't figure things out, then it just returns a list just as lapply does
+sum(matrix$colname): sums up the values in the column of the matrix
+
+matrix[, 11:17]: all rows, but only columns 11 through 17
+
+range(): returns the minimum and maximum of its first argument (a numeric vector)
+unique(): returns a vector with all duplicate elements removed
+
+anonymous functions:
+lapply(unique_vals, function(elem) elem[2]): return a list containing the second item from each element of the unique_vals list
+The function has no name and disappears as soon as lapply() is done using it.
