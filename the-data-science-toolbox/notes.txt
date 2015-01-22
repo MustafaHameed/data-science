@@ -162,6 +162,11 @@ Confounding variable:
 shoe size - literacy
 age is the confounding variable
 
+ways to deal with confounders:
+    - if you can (and want to) fix a variable
+    - if you don't fix a variable, stratify it
+    - if you can't fix a variable, randomize it
+
 Prediction key quantities:
 ------------------------------
 Test/Disease    +   -
