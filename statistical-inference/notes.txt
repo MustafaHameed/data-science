@@ -179,13 +179,85 @@ Example, Poisson approximation to the binomial/;
         ppois(2, lambda = 500 * 0.01)
         ## [1] 0.1247
 
-Asymptotics and Law of Large Numbers:
+Asymptotic and Law of Large Numbers:
 ------------------------------------
+The LLN states that averages of iid samples converge to the population means that
+they are estimating
+
 Law of large numbers in action:
-    n <- 10000
-    means <- cumsum(rnorm(n))/(1:n)
-    library(ggplot2)
-    g <- ggplot(data.frame(x = 1:n, y = means), aes(x = x, y = y))
-    g <- g + geom_hline(yintercept = 0) + geom_line(size = 2)
-    g <- g + labs(x = "Number of obs", y = "Cumulative mean")
-    g
+        n <- 10000
+        means <- cumsum(rnorm(n))/(1:n)
+        library(ggplot2)
+        g <- ggplot(data.frame(x = 1:n, y = means), aes(x = x, y = y))
+        g <- g + geom_hline(yintercept = 0) + geom_line(size = 2)
+        g <- g + labs(x = "Number of obs", y = "Cumulative mean")
+        g
+
+Asymptotic and The Central Limit Theorem:
+-----------------------------------------
+The CLT states that averages are approximately normal, with distributions
+    - centered at the population mean
+    - with standard deviation equal to the standard error of the mean
+    - CLT gives no guarantee that $n$ is large enough
+
+Example:
+    Simulate a standard normal random variable by rolling n (six sided)
+    Let X_i be the outcome for die i
+    Then note that mu = E[X_i] = 3.5
+    Var(X_i) = 2.92
+    SE sqrt{2.92 / n} = 1.71 / sqrt{n}
+    Lets roll n dice, take their mean, subtract off 3.5, and divide by
+    1.71 / sqrt{n} and repeat this over and over
+
+Confidence intervals:
+---------------------
+Taking the mean and adding and subtracting the relevant normal quantile times the
+SE yields a confidence interval for the mean
+    - Adding and subtracting 2 SEs works for 95% intervals
+
+- Confidence intervals get wider as the coverage increases
+- Confidence intervals get narrower with less variability or larger sample sizes
+- The Poisson and binomial case have exact intervals that don't require the CLT
+- But a quick fix for small sample size binomial calculations is to add 2 successes
+and failures
+
+Binomial interval:
+    0.56 + c(-1, 1) * qnorm(0.975) * sqrt(0.56 * 0.44/100)
+    ## [1] 0.4627 0.6573
+    binom.test(56, 100)$conf.int
+    ## [1] 0.4572 0.6592
+    ## attr(,"conf.level")
+    ## [1] 0.95
+
+Simulation:
+    n <- 100
+    pvals <- seq(0.1, 0.9, by = 0.05)
+    nosim <- 1000
+    coverage2 <- sapply(pvals, function(p) {
+        phats <- rbinom(nosim, prob = p, size = n)/n
+        ll <- phats - qnorm(0.975) * sqrt(phats * (1 - phats)/n)
+        ul <- phats + qnorm(0.975) * sqrt(phats * (1 - phats)/n)
+        mean(ll < p & ul > p)
+    })
+    
+Poisson interval:
+    x <- 5
+    t <- 94.32
+    lambda <- x/t
+    round(lambda + c(-1, 1) * qnorm(0.975) * sqrt(lambda/t), 3)
+    ## [1] 0.007 0.099
+    poisson.test(x, T = 94.32)$conf
+    ## [1] 0.01721 0.12371
+    ## attr(,"conf.level")
+    ## [1] 0.95
+
+Simulating the Poisson coverage rate:
+    lambdavals <- seq(0.005, 0.1, by = 0.01)
+    nosim <- 1000
+    t <- 100
+    coverage <- sapply(lambdavals, function(lambda) {
+        lhats <- rpois(nosim, lambda = lambda * t)/t
+        ll <- lhats - qnorm(0.975) * sqrt(lhats/t)
+        ul <- lhats + qnorm(0.975) * sqrt(lhats/t)
+        mean(ll < lambda & ul > lambda)
+    })
