@@ -4,7 +4,7 @@ Data Science
 
 Includes 9 courses and the capstone project:
   * The Data Scientist's Toolbox
-  * [R Programming (Verified Certificate earned on Feb 1, 2015)](https://github.com/lisalisadong/data-science/tree/master/r-programming)
+  * R Programming
   * Geting and Cleaning Data
   * Exploratory Data Analysis
   * Reproducible Research
