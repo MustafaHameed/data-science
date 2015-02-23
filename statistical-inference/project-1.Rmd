@@ -3,6 +3,7 @@ title: 'Statistical Inference Course Project: Part 1'
 author: "Qingxiao Dong"
 date: "February 22, 2015"
 output:
+  html_document: default
   pdf_document: default
 ---
 
