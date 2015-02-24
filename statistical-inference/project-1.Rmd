@@ -3,8 +3,8 @@ title: 'Statistical Inference Course Project: Part 1'
 author: "Qingxiao Dong"
 date: "February 22, 2015"
 output:
-  html_document: default
   pdf_document: default
+  html_document: default
 ---
 
 This is the project for the statistical inference class (Data Science specialization). The project consists of two parts:
@@ -75,6 +75,8 @@ sd(means_exponentials)
 # exponentials to a normal distribution
 qqnorm(means_exponentials)
 qqline(means_exponentials, col = 2)
+
+
 ```
 
 As seen in the figure, the distribution of averages of 40 exponentials is very close to a normal distribution.

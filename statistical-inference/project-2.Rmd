@@ -58,6 +58,8 @@ t.test(len ~ supp, data = Tooth.dose2.0)
 
 ####4. State your conclusions and the assumptions needed for your conclusions. 
 
-Based of the results, we can say that for doses of ```0.5``` and ```1.0```, OJ has a greater effect on Tooth Growth than VC, we know this by the p.value indicators, which are ```0.0064``` and ```0.001``` respectively, being less than 5% and the confidence intervals of the test do not contain 0. For the test at ```dose == 2.0``` we cannot reject the Ho, as the p.value, which is ```0.064```, is greater than 5% and the confidence test contains 0. For the test OJ vs VC we cannot reject the Ho either, as the p.value is 6% (greater than the 5% threshold used for statiscal analysis) and the confidence interval contains 0.
+The p.value indicators for doses of ```0.5``` and ```1.0``` are ```0.0064``` and ```0.001``` respectively, being less than 5% and the confidence intervals of the test do not contain 0.
+The p.value for the dose of ```2.0``` is ```0.064```, which is greater than 5% and the confidence test contains 0.
+Based of the results, we can say that for doses of ```0.5``` and ```1.0```, OJ has a greater effect on Tooth Growth than VC. For the test at ```dose == 2.0``` we cannot reject the Ho. 
 
 We can then conclude that to get greater tooth growth with low levels of dosage (0.5 & 1.0) one should use OJ instead of VC. At greater levels (2.0) of dosage it is uncertain whether there will be a greater effect from either OJ or VC.
