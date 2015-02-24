@@ -65,8 +65,8 @@ format(date, "%a %b %d")
 %y - two digit year
 %Y - four digit year
 as.Date(toTurn, "%a%b")
-weekday()
-month()
+weekdays()
+months()
 julian()
 library(lubridate); ymd()/mdy()/dmy()
 ymd_hms(date, tz="Pacific/Auckland")

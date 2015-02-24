@@ -5,7 +5,7 @@ url2 <- "https://d396qusza40orc.cloudfront.net/getdata%2Fdata%2FPUMSDataDict06.p
 setwd("~/GitHub/data-science/getting-and-cleaning-data/data/")
 download.file(url1, destfile="housingIdaho3.csv", method="curl")
 download.file(url2, destfile="housingIdaho3CodeBook.pdf", method="curl")
-housingData <- read.table("./housingIdaho.csv", sep=",", header=T)
+housingData <- read.table("./housingIdaho3.csv", sep=",", header=T)
 head(housingData)
 condition <- housingData$ACR == 3 & housingData$AGS == 6
 which(condition)
