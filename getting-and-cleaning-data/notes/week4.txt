@@ -1,0 +1,75 @@
+Week 4
+-------------------------
+Editing text variables:
+-----------------------
+tolower()
+toupper()
+strsplit(names(dataset), "\\.") - split by "."
+sapply(list, function)
+sub("_", "", names(reviews),) - substitude first
+gsub("_", "", testName) - substitude all
+grep("toFind", dataset$column, value=T)
+grepl("toFind", dataset$column) - return T / F
+nchar("string")
+substr("string", 1, 7)
+paste("string1", "string2")
+paste0("1", "2") - no space
+str_trim("String      ") - trim out extra space at the end of the string
+
+Names of variables should be:
+    - All lower case when possible
+    - Descriptive (Diagnosis vs DX)
+    - Not duplicated
+    - Not have underscores or dots or white spaces
+Variables with character values:
+    - Should usually be made into factor variables (depends on application)
+    - Should be descriptive (use TRUE/FALSE instead of 0/1 and Male/Female versus
+    0/1 or M/F)
+
+Regular Expressions:
+--------------------
+- a combination of literals and metacharacters
+
+^i think - start of line
+morning$ - end of line
+[Bb][Uu][Ss][Hh] - all bush
+^[Ii] am
+^[0-9][a-zA-Z]
+[^?.]$ - not ended with question mark
+9.11 - . used to refer any character
+flood|fire
+^[Gg]ood|[Bb]ad
+^([Gg]ood|[Bb]ad)
+[Gg]eorge( [Ww]\.)? [Bb]ush
+(.*) - all parenthesis
+[0-9]+ (.*)[0-9]+
+[Bb]ush( +[^ ]+ +){1,5} debate
+m,n - at least m but not more than n matches
+m - exactly m matches
+m, - at least m matches
+ +([a-zA-Z]+) +\1 +    - repetition
+^s(.*)s
+^s(.*?)s - turn off the greediness of *
+
+Dates:
+------
+date()
+Sys.Date()
+format(date, "%a %b %d")
+%d - days as number
+%a - abbreviated weekday
+%A - unabbreviated weekday
+%m - month
+%b - abbreviated month
+%B - unabbreviated month
+%y - two digit year
+%Y - four digit year
+as.Date(toTurn, "%a%b")
+weekday()
+month()
+julian()
+library(lubridate); ymd()/mdy()/dmy()
+ymd_hms(date, tz="Pacific/Auckland")
+?Sys.timezone
+wday()
+wday(,label=T)
