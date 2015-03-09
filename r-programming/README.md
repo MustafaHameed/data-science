@@ -1,5 +1,5 @@
 ##### Verified Course Record:
-R Programming by Johns Hopkins University on Coursera. Certificate earned on February 1, 2015
+This is a four weeks' course R Programming (one of the Data Science Specialization series) by Johns Hopkins University on Coursera. Certificate earned on February 1, 2015
 
 Grade Achieved: 100.0%
 
